@@ -1,9 +1,14 @@
 <?php
 require_once __DIR__ . '/functions.php';
 
-$lengthPassword = isset($_GET['lengthPassword']) ? $_GET['lengthPassword'] : '';
+$lengthPassword = isset($_GET['lengthPassword']) ? intval($_GET['lengthPassword']) : '';
 
-$userPassword = generatePassword($lengthPassword);
+$userPassword = '';
+
+if (!empty($lengthPassword) && $lengthPassword>0) {
+    
+    $userPassword = generatePassword($lengthPassword);
+}
 
 ?>
 
@@ -39,7 +44,7 @@ $userPassword = generatePassword($lengthPassword);
                 <span class="input-group-text">
                     <label for="lengthPassword">Lunghezza della password</label>
                 </span>
-                <input name='lengthPassword' id="lengthPassword" type="number" class="form-control" placeholder="inserisci un numero">
+                <input name='lengthPassword' id="lengthPassword" type="number" class="form-control" placeholder="inserisci un numero" value='$lengthPassword'>
             </div>
 
             <div>
